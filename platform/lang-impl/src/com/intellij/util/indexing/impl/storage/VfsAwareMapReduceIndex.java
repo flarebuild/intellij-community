@@ -53,12 +53,14 @@ public class VfsAwareMapReduceIndex<Key, Value> extends MapReduceIndex<Key, Valu
   static {
     final Application app = ApplicationManager.getApplication();
 
-    if (!IndexDebugProperties.DEBUG) {
-      IndexDebugProperties.DEBUG = (app.isEAP() || app.isInternal()) && !ApplicationManagerEx.isInStressTest();
-    }
+    if (app != null) {
+      if (!IndexDebugProperties.DEBUG) {
+        IndexDebugProperties.DEBUG = (app.isEAP() || app.isInternal()) && !ApplicationManagerEx.isInStressTest();
+      }
 
-    if (!IndexDebugProperties.IS_UNIT_TEST_MODE) {
-      IndexDebugProperties.IS_UNIT_TEST_MODE = app.isUnitTestMode();
+      if (!IndexDebugProperties.IS_UNIT_TEST_MODE) {
+        IndexDebugProperties.IS_UNIT_TEST_MODE = app.isUnitTestMode();
+      }
     }
   }
 
